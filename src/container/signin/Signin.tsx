@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { Layout, Inputs } from '../../components/common';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import login  from '../../actions/auth-actions';
@@ -6,14 +6,18 @@ import { useDispatch } from 'react-redux';
 
 
 const Signin = (props:any) => {
-    
+   
+    const [email,setEmail]=useState('');
+    const [password,setPassword]=useState('');
+    const [error,setError]=useState('');
+
+
     const dispatch = useDispatch();
 
     const userLogin =(e:any)=>{
         e.preventDefault();
         const user = {
-            email: 'nitesh.khanal19@gmail.com',
-            password: 'HelloWorld'
+            email, password
         }
         dispatch(login(user));
     }
@@ -36,8 +40,9 @@ const Signin = (props:any) => {
                                     placeholder="Email"
                                     type="email"
                                     errorMessage="Please enter your email"
-                                    value=""
-                                    onChange={() => { }}
+                                    value={email}
+                                    name="email"
+                                    onChange={(e:any) => {setEmail(e.target.value)}}
 
                                 />
 
@@ -46,8 +51,9 @@ const Signin = (props:any) => {
                                     placeholder="Password"
                                     type="password"
                                     errorMessage="Please enter your password"
-                                    value=""
-                                    onChange={() => { }}
+                                    value={password}
+                                    name="password"
+                                    onChange={(e:any) => { setPassword(e.target.value) }}
 
                                 />
 

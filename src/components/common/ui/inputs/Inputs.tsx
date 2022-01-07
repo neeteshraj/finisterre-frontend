@@ -9,6 +9,7 @@ const Inputs = (props:any) => {
                 type={props.type} 
                 placeholder={props.placeholder} 
                 value={props.value}
+                name={props.name}
                 onChange={props.onChange}
             />
             <Form.Text className="text-muted">

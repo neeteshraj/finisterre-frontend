@@ -1,7 +1,15 @@
 import { authConstants } from "../actions/constants";
 
 const initState ={
-    name: 'Nitesh Raj Khanal',
+    token: null,
+    user:{
+        firstName:'',
+        lastName:'',
+        email:'',
+        picture:''
+    },
+    isAuthenticated:false,
+    isLoading:false,
 
 };
 
@@ -13,7 +21,16 @@ const authReducer=(state=initState, action: any) => {
         case authConstants.LOGIN_REQUEST:
             state={
                 ...state,
-                ...action.payload
+                isLoading:true
+            }
+            break;
+        case authConstants.LOGIN_SUCCESS:
+            state={
+                ...state,
+                isLoading:false,
+                isAuthenticated:true,
+                token:action.payload.token,
+                user:action.payload.user
             }
             break;
     }
