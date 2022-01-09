@@ -19,7 +19,7 @@ import authReducer from '../../../reducers/auth-reducers';
 
 
 const PrivateRoute = (props:any) => {
-    
+
     return (
         <Outlet {...props} component={(props:any)=>{
             const token = window.localStorage.getItem('token');
@@ -33,10 +33,5 @@ const PrivateRoute = (props:any) => {
         />
     )
 }
-
-
-
-
-
 
 export default PrivateRoute;

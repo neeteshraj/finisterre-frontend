@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layout, Inputs } from '../../components/common';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
-import login  from '../../actions/auth-actions';
-import { useDispatch } from 'react-redux';
+import {isUserLoggedIn, login}  from '../../actions/auth-actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
 
 const Signin = (props:any) => {
-   
+  
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
-    const [error,setError]=useState('');
+    const [error,setError]=useState();
+
+
+    const auth = useSelector((state:any) => state.auth);
+
 
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        (!auth.isAuthenticated) && dispatch(isUserLoggedIn());
+    }, [auth.isAuthenticated]);
+    
 
     const userLogin =(e:any)=>{
         e.preventDefault();
@@ -20,6 +30,10 @@ const Signin = (props:any) => {
             email, password
         }
         dispatch(login(user));
+    }
+
+    if(auth.isAuthenticated){
+        return <Navigate to={'/'}/>
     }
 
     

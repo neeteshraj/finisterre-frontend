@@ -12,6 +12,7 @@ const login =(user: any)=>{
         if(res.status===200){
             const{token,user}=res.data;
             localStorage.setItem('token',token);
+            localStorage.setItem('user',JSON.stringify(user));
             dispatch({
                 type: authConstants.LOGIN_SUCCESS,
                 payload: {
@@ -31,4 +32,32 @@ const login =(user: any)=>{
     }
 }
 
-export default login;
+const isUserLoggedIn =()=>{
+    return async (dispatch: any)=>{
+        const token = localStorage.getItem('token');
+        if(token){
+            const user = localStorage.getItem('user');
+            dispatch({
+                type: authConstants.LOGIN_SUCCESS,
+                payload: {
+                    token,
+                    user
+                }
+            });
+        }
+        else{
+            dispatch({
+                type: authConstants.LOGIN_FAILURE,
+                payload: {
+                    error: 'Please login first'
+                }
+            })
+        }
+    }
+}
+
+
+export {
+    login,
+    isUserLoggedIn
+};
