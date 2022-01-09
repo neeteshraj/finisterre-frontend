@@ -19,15 +19,24 @@ import authReducer from '../../../reducers/auth-reducers';
 
 
 const PrivateRoute = (props:any) => {
-    const token = window.localStorage.getItem('token');
-    console.log(token);
-    if(token){
-        return <Route {...props}/>
-    }
-    else{
-        return <Navigate to="/signin"/>
-    }
+    
+    return (
+        <Outlet {...props} component={(props:any)=>{
+            const token = window.localStorage.getItem('token');
+            if(token){
+                return <props.component {...props}/>
+            }
+            else{
+                return <Navigate to={`/signin`}/>
+            }
+        }}
+        />
+    )
 }
+
+
+
+
 
 
 export default PrivateRoute;
