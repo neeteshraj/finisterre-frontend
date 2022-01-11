@@ -1,8 +1,15 @@
 import React from 'react';
-import { Nav, Navbar, NavDropdown, Container } from 'react-bootstrap';
+import { 
+    Nav, 
+    Navbar, 
+    Container 
+} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Header.css';
-import {useSelector, useDispatch} from 'react-redux';
+import {
+    useSelector, 
+    useDispatch
+} from 'react-redux';
 import { signOut } from '../../../actions';
 
 

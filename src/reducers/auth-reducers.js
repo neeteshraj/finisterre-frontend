@@ -13,7 +13,10 @@ const initState ={
         role:''
     },
     isAuthenticated:false,
+    isAuthenticating:false,
     isLoading:false,
+    error:null,
+    message:''
 };
 
 export default (state=initState, action) => {
@@ -24,13 +27,13 @@ export default (state=initState, action) => {
         case authConstants.LOGIN_REQUEST:
             state={
                 ...state,
-                isLoading:true
+                isAuthenticating:true
             }
             break;
         case authConstants.LOGIN_SUCCESS:
             state={
                 ...state,
-                isLoading:false,
+                isAuthenticating:false,
                 isAuthenticated:true,
                 token:action.payload.token,
                 user:action.payload.user
@@ -38,7 +41,20 @@ export default (state=initState, action) => {
             break;
         case authConstants.LOGOUT_REQUEST:
             state={
+                ...state,
+                isLoading:true
+            }
+            break;
+        case authConstants.LOGOUT_SUCCESS:
+            state={
                 ...initState
+            }
+            break;
+        case authConstants.LOGIN_FAILURE:
+            state={
+                ...state,
+                error:action.payload.error,
+                isLoading: false
             }
             break;
     }

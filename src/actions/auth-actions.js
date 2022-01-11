@@ -32,36 +32,6 @@ const login =(user)=>{
     }
 }
 
-// const signup =(user)=>{
-//     return async (dispatch)=>{
-
-//         dispatch({type:authConstants.LOGIN_REQUEST});
-//         const res = await axiosInstance.post(`/admin/signup`,{
-//             ...user
-//         });
-
-//         if(res.status===201){
-//             const{message} = res.data;
-//             dispatch({
-//                 type: authConstants.LOGIN_SUCCESS,
-//                 payload: {
-//                     token,
-//                     user
-//                 }
-//             });
-//         }
-//         else{
-//             if(res.status===400){
-//                 dispatch({
-//                     type: authConstants.LOGIN_FAILURE,
-//                     payload: {error:res.data.error}
-//                 })
-//             }
-//         }
-//     }
-// }
-
-
 const isUserLoggedIn =()=>{
     return async (dispatch)=>{
         const token = localStorage.getItem('token');
@@ -88,18 +58,30 @@ const isUserLoggedIn =()=>{
 
 const signOut =()=>{
     return async (dispatch)=>{
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        dispatch({
-            type: authConstants.LOGOUT_REQUEST
-        })
+
+        dispatch({type:authConstants.LOGOUT_REQUEST});
+        const res = await axiosInstance.post(`/admin/signout`);
+
+        if(res.status===200){
+            localStorage.clear();
+            dispatch({
+                type: authConstants.LOGOUT_SUCCESS,
+            })
+        }
+        else{
+            dispatch({
+                type: authConstants.LOGOUT_FAILURE,
+                payload: {
+                    error: res.data.error
+                }
+            })
+        }        
     }
 }
 
 
 export {
     login,
-    // signup,
     isUserLoggedIn,
     signOut
 };

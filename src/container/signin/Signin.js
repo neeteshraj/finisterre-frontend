@@ -1,5 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Layout, Inputs } from '../../components/common';
+import React, { 
+    useEffect, 
+    useState 
+} from 'react';
+import { 
+    Layout, 
+    Inputs 
+} from '../../components/common';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import {login}  from '../../actions/auth-actions';
 import { useDispatch, useSelector } from 'react-redux';

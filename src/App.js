@@ -15,6 +15,8 @@ import {
   useSelector
 } from 'react-redux';
 import {isUserLoggedIn} from './actions/auth-actions';
+import Products from './container/Products/Products';
+import Orders from './container/Orders/Orders';
 
 
 
@@ -23,7 +25,7 @@ function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
 
-  //component didMount or didnotMount
+  //component didMount or didNotMount
   useEffect(() => {
         if(!auth.isAuthenticated){
             dispatch(isUserLoggedIn());
@@ -35,6 +37,10 @@ function App() {
     <div className="App">
       <Switch>
         <PrivateRoute path="/" exact component={Home} />
+        <PrivateRoute path="/products"  component={Products} />
+        <PrivateRoute path="/orders" component={Orders} />
+
+
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
       </Switch>
