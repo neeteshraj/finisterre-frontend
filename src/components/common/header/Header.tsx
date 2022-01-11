@@ -24,11 +24,11 @@ const Header = (props: any) => {
                         </Nav>
                         <Nav>
                             <li className="nav-item">
-                                <NavLink to="signin" className="nav-link">Sign in</NavLink>
+                                <Link to="/signin" className="nav-link">Sign in</Link>
                             </li>
                             
                             <li className="nav-item">
-                                <NavLink to="signup" className="nav-link">Sign up</NavLink>
+                                <Link to="/signup" className="nav-link">Sign up</Link>
                             </li>
                             
                         </Nav>

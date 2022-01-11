@@ -6,11 +6,11 @@ const initState ={
         firstName:'',
         lastName:'',
         email:'',
-        picture:''
+        picture:'',
+        role:''
     },
     isAuthenticated:false,
     isLoading:false,
-
 };
 
 const authReducer=(state=initState, action: any) => {
