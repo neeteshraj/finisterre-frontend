@@ -13,7 +13,7 @@ const initState ={
     isLoading:false,
 };
 
-const authReducer=(state=initState, action: any) => {
+const authReducer=(state=initState, action) => {
     
     console.log('authReducer', action);
     

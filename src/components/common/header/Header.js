@@ -1,10 +1,10 @@
 import React from 'react';
 import { Nav, Navbar, NavDropdown, Container } from 'react-bootstrap';
-import {Link, NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './Header.css';
 
 
-const Header = (props: any) => {
+const Header = (props) => {
     return (
         <div className="header">
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">

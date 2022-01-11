@@ -1,7 +1,7 @@
 import React from 'react'
 import { Inputs, Layout } from '../../components/common';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
-const Signup = (props: any) => {
+const Signup = (props) => {
     return (
         <div>
             <Layout>
