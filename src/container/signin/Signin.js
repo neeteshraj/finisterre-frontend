@@ -3,17 +3,17 @@ import { Layout, Inputs } from '../../components/common';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import {isUserLoggedIn, login}  from '../../actions/auth-actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 
-const Signin = (props:any) => {
+const Signin = (props) => {
   
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
     const [error,setError]=useState();
 
 
-    const auth = useSelector((state:any) => state.auth);
+    const auth = useSelector((state) => state.auth);
 
 
 
@@ -24,7 +24,7 @@ const Signin = (props:any) => {
     }, [auth.isAuthenticated]);
     
 
-    const userLogin =(e:any)=>{
+    const userLogin =(e)=>{
         e.preventDefault();
         const user = {
             email, password
@@ -33,7 +33,7 @@ const Signin = (props:any) => {
     }
 
     if(auth.isAuthenticated){
-        return <Navigate to={'/'}/>
+        return <Redirect to={'/'}/>
     }
 
     
@@ -56,7 +56,7 @@ const Signin = (props:any) => {
                                     errorMessage="Please enter your email"
                                     value={email}
                                     name="email"
-                                    onChange={(e:any) => {setEmail(e.target.value)}}
+                                    onChange={(e) => {setEmail(e.target.value)}}
 
                                 />
 
@@ -67,7 +67,7 @@ const Signin = (props:any) => {
                                     errorMessage="Please enter your password"
                                     value={password}
                                     name="password"
-                                    onChange={(e:any) => { setPassword(e.target.value) }}
+                                    onChange={(e) => { setPassword(e.target.value) }}
 
                                 />
 

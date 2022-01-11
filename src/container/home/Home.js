@@ -2,7 +2,7 @@ import React from 'react'
 import { Jumbotron, Layout } from '../../components/common'
 
 
-const Home=(props:any) =>{
+const Home=(props) =>{
     return (
         <div>
             <Layout>

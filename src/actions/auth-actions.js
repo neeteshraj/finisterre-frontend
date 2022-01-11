@@ -1,8 +1,8 @@
 import axiosInstance from "../helpers/axios";
 import { authConstants } from "./constants";
 
-const login =(user: any)=>{
-    return async (dispatch: any)=>{
+const login =(user)=>{
+    return async (dispatch)=>{
 
         dispatch({type:authConstants.LOGIN_REQUEST});
         const res = await axiosInstance.post(`/admin/signin`,{
@@ -33,7 +33,7 @@ const login =(user: any)=>{
 }
 
 const isUserLoggedIn =()=>{
-    return async (dispatch: any)=>{
+    return async (dispatch)=>{
         const token = localStorage.getItem('token');
         if(token){
             const user = localStorage.getItem('user');
