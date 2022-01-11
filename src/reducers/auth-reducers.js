@@ -1,3 +1,5 @@
+/* eslint-disable import/no-anonymous-default-export */
+/* eslint-disable default-case */
 
 import { authConstants } from "../actions/constants";
 

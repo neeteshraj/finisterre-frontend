@@ -1,3 +1,5 @@
+/* eslint-disable import/no-anonymous-default-export */
+/* eslint-disable default-case */
 
 import { userConstants } from "../actions/constants";
 const initState = {
