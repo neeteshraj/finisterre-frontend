@@ -1,3 +1,4 @@
+
 import { authConstants } from "../actions/constants";
 
 const initState ={
@@ -13,7 +14,7 @@ const initState ={
     isLoading:false,
 };
 
-const authReducer=(state=initState, action) => {
+export default (state=initState, action) => {
     
     console.log('authReducer', action);
     
@@ -33,9 +34,13 @@ const authReducer=(state=initState, action) => {
                 user:action.payload.user
             }
             break;
+        case authConstants.LOGOUT_REQUEST:
+            state={
+                ...initState
+            }
+            break;
     }
     return state;
 }
 
-export default authReducer;
 

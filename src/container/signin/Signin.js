@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Layout, Inputs } from '../../components/common';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
-import {isUserLoggedIn, login}  from '../../actions/auth-actions';
+import {login}  from '../../actions/auth-actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
@@ -10,7 +10,6 @@ const Signin = (props) => {
   
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
-    const [error,setError]=useState();
 
 
     const auth = useSelector((state) => state.auth);
@@ -19,9 +18,6 @@ const Signin = (props) => {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        (!auth.isAuthenticated) && dispatch(isUserLoggedIn());
-    }, [auth.isAuthenticated]);
     
 
     const userLogin =(e)=>{

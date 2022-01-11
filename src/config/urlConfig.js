@@ -1,4 +1,4 @@
-const api ='http://localhost:2000/';
+const api ='http://localhost:2000/'
 
 
 export {api};

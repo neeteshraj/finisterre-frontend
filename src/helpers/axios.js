@@ -2,7 +2,7 @@ import axios from "axios";
 import {api} from "../config/urlConfig";
 
 const axiosInstance = axios.create({
-    baseURL: api,
+    baseURL: api
     // headers: {
     //     'Authorization':''
     // }

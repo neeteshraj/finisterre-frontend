@@ -1,11 +1,65 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import { Inputs, Layout } from '../../components/common';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
+import {Redirect} from 'react-router-dom';
+import {useSelector,useDispatch} from 'react-redux';
+import signUp from '../../actions/user-actions';
+
 const Signup = (props) => {
+
+    const [firstName, setFirstName]= useState("");
+    const [lastName, setLastName]= useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+
+
+    const auth = useSelector((state) => state.auth);
+    const user = useSelector((state) => state.user);
+
+
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        if(!user.loading){
+            setFirstName("");
+            setLastName("");
+            setEmail("");
+            setPassword("");
+        }
+    },[user.loading])
+    
+    const userSignUp=(e)=>{
+
+        e.preventDefault();
+        const user = {
+            firstName,
+            lastName,
+            email,
+            password
+        };
+        dispatch(signUp(user));
+    };
+
+    if(auth.isAuthenticated){
+        return <Redirect to={`/`}/>
+    }
+
+    if(user.loading){
+    return (
+        <div>
+            <p>
+                Loading...
+            </p>
+        </div>
+    )
+    }
+
     return (
         <div>
             <Layout>
                 <Container>
+                    {user.message}
                     <Row style={{
                         marginTop: '50px'
                     }}>
@@ -13,7 +67,7 @@ const Signup = (props) => {
                             span: 6,
                             offset: 3
                         }}>
-                            <Form>
+                            <Form onSubmit={userSignUp}>
                                 <Row>
                                     <Col md={6}>
                                         <Inputs
@@ -21,8 +75,8 @@ const Signup = (props) => {
                                             placeholder="First Name"
                                             type="text"
                                             errorMessage="Please enter your first name"
-                                            value=""
-                                            onChange={() => { }}
+                                            value={firstName}
+                                            onChange={(e) => {setFirstName(e.target.value)}}
 
                                         />
                                     </Col>
@@ -32,8 +86,8 @@ const Signup = (props) => {
                                             placeholder="Last Name"
                                             type="text"
                                             errorMessage="Please enter your first name"
-                                            value=""
-                                            onChange={() => { }}
+                                            value={lastName}
+                                            onChange={(e) => { setLastName(e.target.value) }}
 
                                         />
                                     </Col>
@@ -43,8 +97,8 @@ const Signup = (props) => {
                                     placeholder="Email"
                                     type="email"
                                     errorMessage="Please enter your email"
-                                    value=""
-                                    onChange={() => { }}
+                                    value={email}
+                                    onChange={(e) => { setEmail(e.target.value) }}
 
                                 />
 
@@ -53,8 +107,8 @@ const Signup = (props) => {
                                     placeholder="Password"
                                     type="password"
                                     errorMessage="Please enter your password"
-                                    value=""
-                                    onChange={() => { }}
+                                    value={password}
+                                    onChange={(e) => { setPassword(e.target.value) }}
 
                                 />
 
