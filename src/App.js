@@ -17,6 +17,7 @@ import {
 import {isUserLoggedIn} from './actions/auth-actions';
 import Products from './container/Products/Products';
 import Orders from './container/Orders/Orders';
+import Category from './container/category/Category';
 
 
 
@@ -39,7 +40,7 @@ function App() {
         <PrivateRoute path="/" exact component={Home} />
         <PrivateRoute path="/products"  component={Products} />
         <PrivateRoute path="/orders" component={Orders} />
-
+        <PrivateRoute path="/category" component={Category} />
 
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />

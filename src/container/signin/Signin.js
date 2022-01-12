@@ -40,7 +40,7 @@ const Signin = (props) => {
 
     
     return (
-        <div>
+    
             <Layout>
                 <Container>
                     <Row style={{
@@ -81,7 +81,7 @@ const Signin = (props) => {
                     </Row>
                 </Container>
             </Layout>
-        </div>
+    
     )
 }
 
