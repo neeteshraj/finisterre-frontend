@@ -51,7 +51,7 @@ const Category = () => {
     }
 
     const handleCategoryImage=(e)=>{ 
-        setCategoryImage(e.target.files[0]);
+        setCategoryImage(e.target.file);
     }
 
     const handleClose = () => {
@@ -77,7 +77,7 @@ const Category = () => {
                     <Col md={12}>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <h3>Category</h3>
-                            <button onClick={handleShow}>Add</button>
+                            <Button variant="outline-primary" onClick={handleShow}>Add</Button>
                         </div>
                     </Col>
                 </Row>
