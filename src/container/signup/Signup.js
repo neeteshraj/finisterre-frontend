@@ -56,7 +56,7 @@ const Signup = (props) => {
     }
 
     return (
-        <div>
+
             <Layout>
                 <Container>
                     {user.message}
@@ -120,7 +120,7 @@ const Signup = (props) => {
                     </Row>
                 </Container>
             </Layout>
-        </div>
+
     )
 }
 
