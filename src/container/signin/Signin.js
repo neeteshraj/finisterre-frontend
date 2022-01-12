@@ -1,26 +1,46 @@
-import React from 'react'
-import { Layout, Inputs } from '../../components/common';
+import React, { 
+    useEffect, 
+    useState 
+} from 'react';
+import { 
+    Layout, 
+    Inputs 
+} from '../../components/common';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
-import login  from '../../actions/auth-actions';
-import { useDispatch } from 'react-redux';
+import {login}  from '../../actions/auth-actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 
-const Signin = (props:any) => {
-    
+const Signin = (props) => {
+  
+    const [email,setEmail]=useState('');
+    const [password,setPassword]=useState('');
+
+
+    const auth = useSelector((state) => state.auth);
+
+
+
     const dispatch = useDispatch();
 
-    const userLogin =(e:any)=>{
+    
+
+    const userLogin =(e)=>{
         e.preventDefault();
         const user = {
-            email: 'nitesh.khanal19@gmail.com',
-            password: 'HelloWorld'
+            email, password
         }
         dispatch(login(user));
     }
 
+    if(auth.isAuthenticated){
+        return <Redirect to={'/'}/>
+    }
+
     
     return (
-        <div>
+    
             <Layout>
                 <Container>
                     <Row style={{
@@ -36,8 +56,9 @@ const Signin = (props:any) => {
                                     placeholder="Email"
                                     type="email"
                                     errorMessage="Please enter your email"
-                                    value=""
-                                    onChange={() => { }}
+                                    value={email}
+                                    name="email"
+                                    onChange={(e) => {setEmail(e.target.value)}}
 
                                 />
 
@@ -46,8 +67,9 @@ const Signin = (props:any) => {
                                     placeholder="Password"
                                     type="password"
                                     errorMessage="Please enter your password"
-                                    value=""
-                                    onChange={() => { }}
+                                    value={password}
+                                    name="password"
+                                    onChange={(e) => { setPassword(e.target.value) }}
 
                                 />
 
@@ -59,7 +81,7 @@ const Signin = (props:any) => {
                     </Row>
                 </Container>
             </Layout>
-        </div>
+    
     )
 }
 
