@@ -6,6 +6,7 @@ import {
     Container 
 } from 'react-bootstrap';
 import {NavLink} from 'react-router-dom';
+import './Layout.css';
 
 const Layout=(props)=> {
     return (
