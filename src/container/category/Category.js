@@ -60,8 +60,6 @@ const Category = () => {
         form.append('name', categoryName);
         form.append('parentId', parentCategoryId);
         form.append('categoryImages', categoryImage);
-        console.log(form.get('name'));
-        console.log(form.get('parentId'));
         dispatch(addCategory(form));
         
         // console.log(cat);
