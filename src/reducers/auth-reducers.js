@@ -21,7 +21,7 @@ const initState ={
 
 export default (state=initState, action) => {
     
-    console.log('authReducer', action);
+    // console.log('authReducer', action);
     
     switch(action.type) {
         case authConstants.LOGIN_REQUEST:

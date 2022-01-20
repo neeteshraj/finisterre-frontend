@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Container, Row, Col, Modal, Button } from 'react-bootstrap';
 import { Inputs, Layout } from '../../components/common';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect,useState } from 'react';
+import addProduct from '../../actions/product-actions';
 
 const Products = () => {
     
@@ -32,19 +34,21 @@ const Products = () => {
     }
 
 
+
     const handleClose = () => {
-        // const form = new FormData();
+        const form = new FormData();
 
-        // form.append('name', name);
-        // form.append('quantity', quantity);
-        // form.append('price', price);
-        // form.append('description', description);
-        // form.append('productPictures', productPictures);
-        // form.append('category', category);
+        form.append('name', name);
+        form.append('quantity', quantity);
+        form.append('price', price);
+        form.append('description', description);
+        form.append('category', category);
 
-
-        // dispatch(addCategory(form));
+        for(let pic of productPictures){
+            form.append('productPictures', pic);
+        }
         
+        dispatch(addProduct(form));
         
         setShow(false);
     }
@@ -57,7 +61,6 @@ const Products = () => {
             e.target.files[0]
         ]);
     }
-    console.log(productPictures);
     
     return (
 
@@ -118,7 +121,7 @@ const Products = () => {
 
                 {
                     productPictures.length> 0?
-                    productPictures.map((pic,index)=><div key={index}>{JSON.stringify(pic)}</div>): null
+                    productPictures.map((pic,index)=><div key={index}>{pic.name}</div>): null
 
                 }
 

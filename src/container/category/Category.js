@@ -23,6 +23,8 @@ const Category = () => {
         dispatch(getAllCategories());
     }, []);
 
+
+
     const renderCategories = (categories) => {
         let myCategories = [];
         for (let category of categories) {
@@ -65,7 +67,9 @@ const Category = () => {
         // console.log(cat);
         setShow(false);
     }
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        setShow(true);
+    };
 
     return (
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { 
     useEffect, 
     useState 
@@ -23,8 +24,6 @@ const Signin = (props) => {
 
 
     const dispatch = useDispatch();
-
-    
 
     const userLogin =(e)=>{
         e.preventDefault();
@@ -58,8 +57,7 @@ const Signin = (props) => {
                                     errorMessage="Please enter your email"
                                     value={email}
                                     name="email"
-                                    onChange={(e) => {setEmail(e.target.value)}}
-
+                                    onChange={(e)=>setEmail(e.target.value)}
                                 />
 
                                 <Inputs

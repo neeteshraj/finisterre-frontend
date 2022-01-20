@@ -4,6 +4,7 @@ import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import {Redirect} from 'react-router-dom';
 import {useSelector,useDispatch} from 'react-redux';
 import signUp from '../../actions/user-actions';
+import Swal from 'sweetalert2';
 
 const Signup = (props) => {
 
@@ -18,7 +19,9 @@ const Signup = (props) => {
     const user = useSelector((state) => state.user);
 
 
+
     const dispatch = useDispatch();
+
 
     useEffect(()=>{
         if(!user.loading){
@@ -27,7 +30,7 @@ const Signup = (props) => {
             setEmail("");
             setPassword("");
         }
-    },[user.loading])
+    },[user.loading]);
     
     const userSignUp=(e)=>{
 
@@ -46,20 +49,27 @@ const Signup = (props) => {
     }
 
     if(user.loading){
-    return (
-        <div>
-            <p>
-                Loading...
-            </p>
-        </div>
-    )
+        Swal.fire({
+            title: 'Success',
+            text: 'You have successfully signed up',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            showConfirmButton: false,
+            timer: 3000
+        }).then(() => {
+            window.location.href = '/';
+        });
     }
+    
+    
 
     return (
 
             <Layout>
                 <Container>
-                    {user.message}
                     <Row style={{
                         marginTop: '50px'
                     }}>
