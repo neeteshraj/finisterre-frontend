@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { Inputs, Layout, newModal } from "../../components/common";
+import { Inputs, Layout } from "../../components/common";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { addCategory } from "../../actions/category-actions";
 import Modal from "../../components/common/ui/Modal/Modal";
 
