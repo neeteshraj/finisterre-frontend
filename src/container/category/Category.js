@@ -46,7 +46,8 @@ const Category = () => {
     };
 
     const handleCategoryImage = (e) => {
-        setCategoryImage(e.target.file);
+        setCategoryImage(e.target.files[0]);
+        console.log(e.target.files);
     };
 
     const handleClose = () => {

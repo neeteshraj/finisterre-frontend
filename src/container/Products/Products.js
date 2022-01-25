@@ -33,7 +33,7 @@ const Products = (props) => {
     form.append("category", categoryId);
 
     for (let pic of productPictures) {
-      form.append("productPicture", pic);
+      form.append("productPictures", pic);
     }
 
     dispatch(addProduct(form)).then(() => setShow(false));
@@ -74,7 +74,7 @@ const Products = (props) => {
           {product.products.length > 0
             ? product.products.map((product) => (
                 <tr key={product._id}>
-                  <td>2</td>
+                  <td>1</td>
                   <td>{product.name}</td>
                   <td>{product.price}</td>
                   <td>{product.quantity}</td>
@@ -141,7 +141,7 @@ const Products = (props) => {
           value={categoryId}
           onChange={(e) => setCategoryId(e.target.value)}
         >
-          <option>select category</option>
+          <option>Select category</option>
           {createCategoryList(category.categories).map((option) => (
             <option key={option.value} value={option.value}>
               {option.name}
@@ -155,7 +155,7 @@ const Products = (props) => {
           : null}
         <input
           type="file"
-          name="productPicture"
+          name="productPictures"
           onChange={handleProductPictures}
         />
       </Modal>
@@ -215,7 +215,7 @@ const Products = (props) => {
             <div style={{ display: "flex" }}>
               {productDetails.productPictures.map((picture) => (
                 <div className="productImgContainer">
-                  <img src={generatePublicUrl(picture.img)} alt="" />
+                  <img src={picture.img} alt="" />
                 </div>
               ))}
             </div>
