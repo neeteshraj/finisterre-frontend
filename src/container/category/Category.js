@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { Inputs, Layout, newModal } from "../../components/common";
+import { Inputs, Layout } from "../../components/common";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { addCategory } from "../../actions/category-actions";
 import Modal from "../../components/common/ui/Modal/Modal";
 
@@ -10,7 +10,7 @@ const Category = () => {
     const category = useSelector((state) => state.category);
     const [categoryName, setCategoryName] = useState("");
     const [parentCategoryId, setParentCategoryId] = useState("");
-    const [categoryImage, setCategoryImage] = useState("");
+    const [categoryImages, setCategoryImage] = useState("");
     const dispatch = useDispatch();
     const [show, setShow] = useState(false);
 
@@ -35,6 +35,7 @@ const Category = () => {
                 value: category._id,
                 name: category.name,
                 parentId: category.parentId,
+                categoryImages: category.categoryImages,
                 type: category.type
             });
             if (category.children.length > 0) {
@@ -53,7 +54,7 @@ const Category = () => {
 
         form.append("name", categoryName);
         form.append("parentId", parentCategoryId);
-        form.append("categoryImages", categoryImage);
+        form.append("categoryImages", categoryImages);
         dispatch(addCategory(form));
 
         setCategoryName("");
@@ -113,7 +114,7 @@ const Category = () => {
                 </select>
                 <input
                     type="file"
-                    name="categoryImage"
+                    name="categoryImages"
                     onChange={handleCategoryImage}
                 />
             </Modal>
