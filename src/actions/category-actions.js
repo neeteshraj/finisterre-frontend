@@ -32,8 +32,8 @@ export const addCategory = (form) => {
             type: categoryConstants.ADD_NEW_CATEGORY_REQUEST
         });
         const res = await axiosInstance.post(`/category/createcategory`,form,{
-            headers:{
-                'Content-Type':'multipart/form-data'
+            headers: {
+                'Content-Type': 'multipart/form-data'
             }
         });
         if(res.status===200){

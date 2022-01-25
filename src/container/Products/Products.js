@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import addProduct from '../../actions/product-actions';
 import Modal from '../../components/common/ui/Modal/Modal';
+import './Products.css';
+import { generatePublicUrl } from '../../config/urlConfig';
 
 
 const Products = (props) => {
@@ -76,12 +78,14 @@ const Products = (props) => {
                   <td>{product.name}</td>
                   <td>{product.price}</td>
                   <td>{product.quantity}</td>
-                  <td>--</td>
+                  <td>{product.category.name}</td>
                   <td>
-                    <button onClick={() => showProductDetailsModal(product)}>
-                      info
-                    </button>
-                    <button
+                    <Button variant="info"
+                      onClick={() => showProductDetailsModal(product)}>
+                      Info
+                    </Button>
+                    &nbsp;
+                    <Button variant="danger"
                       onClick={() => {
                         const payload = {
                           productId: product._id,
@@ -90,8 +94,8 @@ const Products = (props) => {
                         alert("deleted nigga");
                       }}
                     >
-                      del
-                    </button>
+                      Delete
+                    </Button>
                   </td>
                 </tr>
               ))
@@ -211,7 +215,7 @@ const Products = (props) => {
             <div style={{ display: "flex" }}>
               {productDetails.productPictures.map((picture) => (
                 <div className="productImgContainer">
-                  <img src={picture.img} alt="" />
+                  <img src={generatePublicUrl(picture.img)} alt="" />
                 </div>
               ))}
             </div>
