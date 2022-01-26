@@ -59,10 +59,10 @@ const Products = (props) => {
 
   const renderProducts = () => {
     return (
-      <Table style={{ fontSize: 12 }} responsive="sm">
+      <Table style={{ fontSize: 12 }} responsive="sm" className="table-serial">
         <thead>
           <tr>
-            <th>#</th>
+            <th>S.No</th>
             <th>Name</th>
             <th>Price</th>
             <th>Quantity</th>
@@ -72,9 +72,10 @@ const Products = (props) => {
         </thead>
         <tbody>
           {product.products.length > 0
-            ? product.products.map((product) => (
+            ? product.products.map((product) => {
+              return (
                 <tr key={product._id}>
-                  <td>1</td>
+                  <td></td>
                   <td>{product.name}</td>
                   <td>{product.price}</td>
                   <td>{product.quantity}</td>
@@ -92,13 +93,14 @@ const Products = (props) => {
                         };
                         // dispatch(deleteProductById(payload));
                         alert("deleted nigga");
-                      }}
+                      } }
                     >
                       Delete
                     </Button>
                   </td>
                 </tr>
-              ))
+              );
+            })
             : null}
         </tbody>
       </Table>
@@ -215,7 +217,7 @@ const Products = (props) => {
             <div style={{ display: "flex" }}>
               {productDetails.productPictures.map((picture) => (
                 <div className="productImgContainer">
-                  <img src={picture.img} alt="" />
+                  <img src={generatePublicUrl(picture.img)} alt="" />
                 </div>
               ))}
             </div>

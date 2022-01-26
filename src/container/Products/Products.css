@@ -18,3 +18,12 @@
     max-height: 100%;
     object-fit: contain;
 }
+.table-serial{
+    counter-reset: serial-number;
+}
+.table-serial td:first-child:before{
+    counter-increment: serial-number;
+    content: counter(serial-number);
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+}
