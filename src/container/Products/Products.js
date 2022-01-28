@@ -8,8 +8,9 @@ import addProduct from '../../actions/product-actions';
 import Modal from '../../components/common/ui/Modal/Modal';
 import './Products.css';
 import { generatePublicUrl } from '../../config/urlConfig';
+import _ from 'lodash';
 
-
+const pageSize=10;
 const Products = (props) => {
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState("");
@@ -20,10 +21,30 @@ const Products = (props) => {
   const [show, setShow] = useState(false);
   const [productDetailModal, setProductDetailModal] = useState(false);
   const [productDetails, setProductDetails] = useState(null);
+  const [paginated, setPaginated] = useState("");
+  const [currentPage, setCurrentPage]= useState("");
   const category = useSelector((state) => state.category);
   const product = useSelector((state) => state.product);
   const dispatch = useDispatch();
 
+
+
+  useEffect(() => {
+    setPaginated(product.products.slice(0, pageSize));
+  },[]);
+
+  const pagination=(pageNo)=>{
+    setCurrentPage(pageNo);
+    const startIndex = (pageNo - 1) * pageSize;
+    const paginatedPosts = _(product.products).slice(startIndex).take(pageSize).value();
+    setPaginated(paginatedPosts);
+  }
+
+  const pageCount = product.products ? Math.ceil(product.products.length / pageSize) : 0;
+  if(pageCount === 1) {
+    return null;
+  }
+  const pages = _.range(1, pageCount + 1);
   const handleClose = () => {
     const form = new FormData();
     form.append("name", name);
@@ -59,6 +80,7 @@ const Products = (props) => {
 
   const renderProducts = () => {
     return (
+      <>
       <Table style={{ fontSize: 12 }} responsive="sm" className="table-serial">
         <thead>
           <tr>
@@ -71,8 +93,8 @@ const Products = (props) => {
           </tr>
         </thead>
         <tbody>
-          {product.products.length > 0
-            ? product.products.map((product) => {
+          {paginated.length > 0
+            ? paginated.map((product) => {
               return (
                 <tr key={product._id}>
                   <td></td>
@@ -104,6 +126,26 @@ const Products = (props) => {
             : null}
         </tbody>
       </Table>
+      <nav className="d-flex justify-content-center">
+        <ul className="pagination">
+          {
+            pages.map((page) => (
+              <li className={
+                page === currentPage ? "page-item active":"page-item"
+              }>
+                <p className="page-link"
+                  onClick={()=>{
+                    pagination(page)
+                  }}
+                >
+                {page}
+                </p>
+                </li>
+            ))
+          }
+        </ul>
+      </nav>
+      </>
     );
   };
 
