@@ -49,5 +49,17 @@ export const addCategory = (form) => {
             })
         }
     }
+}
+
+export const updateCategories = (form) => {
+    return async (dispatch)=>{
+        const res = await axiosInstance.post(`/category/updatecategory`,form);
+        if(res.status===200){
+            return true;
+        }
+        else{
+            console.log(res);
+        }
+    }
 } 
 

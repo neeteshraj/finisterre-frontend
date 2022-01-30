@@ -19,9 +19,6 @@ import {isUserLoggedIn} from './actions/auth-actions';
 import Products from './container/Products/Products';
 import Orders from './container/Orders/Orders';
 import Category from './container/category/Category';
-import {
-    getAllCategories
-} from './actions/category-actions';
 import getInitialData from './actions/initialData-actions';
 
 
