@@ -29,6 +29,7 @@ const Category = () => {
     const [checkedArray, setCheckedArray] = useState([]);
     const [expandedArray, setExpandedArray] = useState([]);
     const [updateCategoryModal, setUpdateCategoryModal] = useState(false);
+    const [deleteCategoryModal, setDeleteCategoryModal] = useState(false);
     const dispatch = useDispatch();
     const [show, setShow] = useState(false);
 
@@ -86,7 +87,11 @@ const Category = () => {
     };
 
     const updateCategory = () => {
+        updateCheckedAndExpandedCategories();
         setUpdateCategoryModal(true);
+    }
+
+    const updateCheckedAndExpandedCategories = () => {
         const categories = createCategoryList(category.categories);
         const checkedArray = [];
         const expandedArray = [];
@@ -100,7 +105,6 @@ const Category = () => {
         })
         setCheckedArray(checkedArray);
         setExpandedArray(expandedArray);
-        console.log({ checked, expanded, categories, checkedArray, expandedArray });
     }
 
     const handleCategoryInput = (key, value, index, type) => {
@@ -246,6 +250,7 @@ const Category = () => {
         )
     }
 
+
     const renderAddCategoryModal = ()=>{
         return(
             <Modal
@@ -278,6 +283,43 @@ const Category = () => {
                     name="categoryImages"
                     onChange={handleCategoryImage}
                 />
+            </Modal>
+        )
+    }
+
+    const deleteCategory=()=>{
+        updateCheckedAndExpandedCategories();
+        setDeleteCategoryModal(true);
+    }
+
+    const renderDeleteCategoryModal = () => {
+        console.log("Delete", checkedArray);
+        return (
+            <Modal
+                modalTitle="Confirm"
+                show={deleteCategoryModal}
+                handleClose={() => setDeleteCategoryModal(false)}
+                buttons={[
+                    {
+                        label:'Cancel',
+                        color:'secondary',
+                        onClick: ()=>{
+                            alert('cancel');
+                        }
+                    },
+                    {
+                        label:'Delete',
+                        color:'danger',
+                        onClick: ()=>{
+                            alert('delete');
+                        }
+                    }
+                ]}
+            >
+                <h5>Expanded</h5>
+                
+
+
             </Modal>
         )
     }
@@ -320,13 +362,14 @@ const Category = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <Button>Delete</Button>
+                        <Button onClick={deleteCategory}>Delete</Button>
                         <Button onClick={updateCategory}>Edit</Button>
                     </Col>
                 </Row>
             </Container>
             {renderAddCategoryModal()}
             {renderUpdateCategoriesModal()}
+            {renderDeleteCategoryModal()}
 
         </Layout>
     );
