@@ -31,7 +31,11 @@ export const addCategory = (form) => {
         dispatch({
             type: categoryConstants.ADD_NEW_CATEGORY_REQUEST
         });
-        const res = await axiosInstance.post(`/category/createcategory`,form);
+        const res = await axiosInstance.post(`/category/createcategory`,form,{
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
         if(res.status===200){
             dispatch({
                 type: categoryConstants.ADD_NEW_CATEGORY_SUCCESS,
@@ -43,6 +47,18 @@ export const addCategory = (form) => {
                 type: categoryConstants.ADD_NEW_CATEGORY_FAILURE,
                 payload:res.data.error
             })
+        }
+    }
+}
+
+export const updateCategories = (form) => {
+    return async (dispatch)=>{
+        const res = await axiosInstance.post(`/category/updatecategory`,form);
+        if(res.status===200){
+            return true;
+        }
+        else{
+            console.log(res);
         }
     }
 } 

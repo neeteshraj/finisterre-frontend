@@ -16,7 +16,8 @@ const signUp =(user)=>{
             dispatch({
                 type: userConstants.USER_REGISTER_SUCCESS,
                 payload: {message}
-            });
+            })
+            
         }else{
             if(res.status === 400){
                 dispatch({
